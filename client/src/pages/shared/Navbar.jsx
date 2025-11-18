@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import AuthContext from "../../context/AuthContext/AuthContext"
 
 export default function Navbar() {
@@ -11,11 +11,11 @@ export default function Navbar() {
   }
   const links = (
     <>
-      <li>
-        <a href="#">Item 1</a>
+      <li>  
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <a href="#">item 2</a>
+        <NavLink to="/register">Register</NavLink>
       </li>
     </>
   )
