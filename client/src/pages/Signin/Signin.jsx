@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import registerAmnimation from "../../assets/lottiefiles/register.json";
 import AuthContext from "../../context/AuthContext/AuthContext";
-import { useContext } from "react";
+import { use, useContext } from "react";    
 
 export default function Signin() {
     const {signinUser} = useContext(AuthContext);
