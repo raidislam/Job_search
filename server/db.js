@@ -1,10 +1,9 @@
-// JleiBsdk8CPuo2WG
-// raidul
-
-
+// admin
+// m7YLnfDX4f1x4iuW
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://raidul:JleiBsdk8CPuo2WG@cluster0.iskl0wo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://admin:m7YLnfDX4f1x4iuW@cluster0.iskl0wo.mongodb.net/?appName=Cluster0";
 
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -15,7 +14,9 @@ const client = new MongoClient(uri, {
 
 async function dbConnect() {
   try {
+    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+    // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
@@ -23,5 +24,6 @@ async function dbConnect() {
     // await client.close();
   }
 }
+
 
 module.exports = dbConnect
