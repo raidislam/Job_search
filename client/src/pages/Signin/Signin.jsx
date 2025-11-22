@@ -1,18 +1,24 @@
 import Lottie from "lottie-react";
 import registerAmnimation from "../../assets/lottiefiles/register.json";
 import AuthContext from "../../context/AuthContext/AuthContext";
-import { use, useContext } from "react";    
+import {  useContext } from "react";    
+import { useLocation, useNavigate } from "react-router";
+import SocialLogin from "../shared/SocialLogin";
 
 export default function Signin() {
     const {signinUser} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state || '/'
     const handleSignin = (event)=>{
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         signinUser(email,password)
-        .then(res=>{
+        .then(()=>{
             console.log('Sign in')
+            navigate(from);
         })
         .catch((err)=>console.log(err))
     }
@@ -41,6 +47,7 @@ export default function Signin() {
               </div>
               <button className="btn btn-neutral mt-4">Login</button>
           </form>
+          <SocialLogin/>
         </div>
          <div className="text-center lg:text-left w-[500px]">
           <Lottie animationData={registerAmnimation} />

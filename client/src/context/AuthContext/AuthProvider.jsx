@@ -1,3 +1,4 @@
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -6,7 +7,10 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import auth from "../../firebase/firebase.config";
+
 import AuthContext from "./AuthContext";
+const googleProvider = new GoogleAuthProvider();
+// eslint-disable-next-line react/prop-types
 export default function AuthProvider({ children }) {
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,6 +23,11 @@ export default function AuthProvider({ children }) {
   const signinUser = (email,password)=>{
     setLoading(true);
     return signInWithEmailAndPassword(auth,email,password)
+  }
+
+  const socialSignInWithGoogle = ()=>{
+    setLoading(true);
+    return signInWithPopup(auth,googleProvider);
   }
 
   const signOutUser = ()=>{
@@ -40,9 +49,11 @@ export default function AuthProvider({ children }) {
   const userInfo = {
     users,
     loading,
+    setLoading,
     createUser,
     signinUser,
-    signOutUser
+    signOutUser,
+    socialSignInWithGoogle
   };
 
   return (
